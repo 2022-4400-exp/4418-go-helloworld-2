@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: go-helloworld
+  name: go-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-helloworld
+  template:
+    metadata:
+      labels:
+        app: go-helloworld
+    spec:
+      containers:
+      - image: m19054/go-helloworld
+        name: go-helloworld
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: go-helloworld
+  name: go-helloworld
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: go-helloworld
+  type: NodePort
