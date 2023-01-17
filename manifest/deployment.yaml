@@ -17,18 +17,3 @@ spec:
       containers:
       - image: m19054/go-helloworld
         name: go-helloworld
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: go-helloworld
-  name: go-helloworld
-spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: go-helloworld
-  type: NodePort
